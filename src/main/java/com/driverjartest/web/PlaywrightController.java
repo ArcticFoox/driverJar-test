@@ -27,4 +27,15 @@ public class PlaywrightController {
 
         return "Ok";
     }
+    @RequestMapping("/playwright2")
+    public String getPlaywright2(@RequestParam String url) {
+
+        URLUtils.setScreenshotUtil(screenshotUtil);
+
+        String result = URLUtils.get2(url);
+
+        log.info("스크린샷 캡처 완료: {}", result);
+
+        return "Ok";
+    }
 }

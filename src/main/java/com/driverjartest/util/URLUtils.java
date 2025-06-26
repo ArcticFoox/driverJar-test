@@ -33,6 +33,25 @@ public final class URLUtils {
         }
     }
 
+    public static String get2( String url ) {
+
+        System.setProperty( "playwright.driver.impl", "com.driverjartest.lib.DriverJar" );
+
+        CompletableFuture<Optional<String>> screenshotFuture = CompletableFuture
+                .supplyAsync( () -> tryScreenshotCapture( url ) )
+                .orTimeout( 25 , TimeUnit.SECONDS );
+
+        try {
+            Optional<String> screenshotResult = screenshotFuture.get();
+            if ( screenshotResult.isPresent() ) {
+                log.info( "can't find OG:Image so get webpage screenshot" );
+            }
+            return "success";
+        } catch ( InterruptedException | ExecutionException e ) {
+            return "failed";
+        }
+    }
+
     private static Optional<String> tryScreenshotCapture(String url ) {
 
         try {
