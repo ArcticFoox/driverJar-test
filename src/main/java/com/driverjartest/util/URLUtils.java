@@ -25,7 +25,7 @@ public final class URLUtils {
         try {
             Optional<String> screenshotResult = screenshotFuture.get();
             if ( screenshotResult.isPresent() ) {
-                log.info( "can't find OG:Image so get webpage screenshot" );
+                log.info( "can't find OG:Image so get webpage screenshot in get1" );
             }
             return "success";
         } catch ( InterruptedException | ExecutionException e ) {
@@ -44,7 +44,7 @@ public final class URLUtils {
         try {
             Optional<String> screenshotResult = screenshotFuture.get();
             if ( screenshotResult.isPresent() ) {
-                log.info( "can't find OG:Image so get webpage screenshot" );
+                log.info( "can't find OG:Image so get webpage screenshot in get2" );
             }
             return "success";
         } catch ( InterruptedException | ExecutionException e ) {
@@ -55,19 +55,19 @@ public final class URLUtils {
     private static Optional<String> tryScreenshotCapture(String url ) {
 
         try {
-            log.debug( "스크린샷 캡처 시작: {}" , url );
+            log.debug( "screenshot start: {}" , url );
 
             if ( screenshotUtil == null ) {
-                log.warn( "WebPageScreenshotUtil이 주입되지 않았습니다." );
+                log.warn( "can't find WebPageScreenshotUtil" );
                 return Optional.empty();
             }
 
             Optional<byte[]> screenshotBase64 = screenshotUtil.captureWebPageScreenshot(url);
-            log.info( "스크린샷 캡처 완료" );
+            log.info( "screenshot success" );
 
         }
         catch ( Exception e ) {
-            log.debug( "스크린샷 캡처 실패: {}" , url , e );
+            log.debug( "screenshot failed: {}" , url , e );
             return Optional.empty();
         }
 

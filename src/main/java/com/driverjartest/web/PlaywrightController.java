@@ -23,7 +23,7 @@ public class PlaywrightController {
 
         String result = URLUtils.get(url);
 
-        log.info("스크린샷 캡처 완료: {}", result);
+        log.info("screenshot success log get1: {}", result);
 
         return "Ok";
     }
@@ -34,7 +34,7 @@ public class PlaywrightController {
 
         String result = URLUtils.get2(url);
 
-        log.info("스크린샷 캡처 완료: {}", result);
+        log.info("screenshot success log get2: {}", result);
 
         return "Ok";
     }
